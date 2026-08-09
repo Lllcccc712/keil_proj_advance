@@ -114,6 +114,11 @@ void led_one()
 /*mode_two*/
 void led_two()
 {
+    led_off(0);
+    led_off(1);
+    led_off(2);
+    led_off(3);
+
     switch(flow_step)
     {
         case 0:
@@ -158,4 +163,5 @@ void led_all()
         led_off(1);
         led_off(2);
         led_off(3);
+        HAL_Delay(DELAY_MS);
 }

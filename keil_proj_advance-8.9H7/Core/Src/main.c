@@ -69,7 +69,7 @@ int main(void)
 
   /* USER CODE BEGIN 1 */
   mode current_mode = mode_one; 
-  int signal = 0;
+  int signal = 2;
   /* USER CODE END 1 */
 
   /* MPU Configuration--------------------------------------------------------*/
