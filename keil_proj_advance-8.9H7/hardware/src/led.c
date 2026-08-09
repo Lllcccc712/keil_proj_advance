@@ -80,9 +80,9 @@ void flow_led(void)
         for(led_num = 0U; led_num <= LED_NUM_MAX; led_num++)
         {
             led_on(led_num);
-            HAL_delay(DELAY_MS);
+            HAL_Delay(DELAY_MS);
             led_off(led_num);
-            HAL_delay(DELAY_MS);
+            HAL_Delay(DELAY_MS);
         }
         
     }
