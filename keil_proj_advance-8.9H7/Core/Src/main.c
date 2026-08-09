@@ -107,6 +107,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+    flow_led();
 
     /* USER CODE BEGIN 3 */
     led_on(0U);

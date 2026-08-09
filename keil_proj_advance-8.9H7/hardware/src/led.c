@@ -74,11 +74,16 @@ void led_off(uint8_t led_num)
 }
 
 /*流水灯*/
-void flow_led(uint8_t led_num)
+void flow_led(void)
     {
-        led_on(led_num);
-        HAL_delay(DELAY_MS);
-        led_off(led_num);
-        HAL_delay(DELAY_MS);
+        static uint8_t led_num;
+        for(led_num = 0U; led_num <= LED_NUM_MAX; led_num++)
+        {
+            led_on(led_num);
+            HAL_delay(DELAY_MS);
+            led_off(led_num);
+            HAL_delay(DELAY_MS);
+        }
+        
     }
 
