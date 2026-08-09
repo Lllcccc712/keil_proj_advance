@@ -7,8 +7,12 @@
 /* 宏定义函数做越界检查*/
 #define IS_VALID_LED(led_num) ((led_num) >= (LED_NUM_MIN) && (led_num) <= (LED_NUM_MAX))
 
+
+/* 创建全局变量*/
+ static uint8_t led_num;
+
 /* 点亮 第n个 LED */
-void led_on(uint8_t led_num)
+static void led_on(uint8_t led_num)
 {
     if(!IS_VALID_LED(led_num))
     {
@@ -37,12 +41,12 @@ void led_on(uint8_t led_num)
    }
 
 
-   
+
     
 }
 
 /* 熄灭 第n个 LED */
-void led_off(uint8_t led_num)
+static void led_off(uint8_t led_num)
 {
     if(!IS_VALID_LED(led_num))
     {
@@ -76,14 +80,22 @@ void led_off(uint8_t led_num)
 /*流水灯*/
 void flow_led(void)
     {
-        static uint8_t led_num;
-        for(led_num = 0U; led_num <= LED_NUM_MAX; led_num++)
-        {
-            led_on(led_num);
-            HAL_Delay(DELAY_MS);
-            led_off(led_num);
-            HAL_Delay(DELAY_MS);
-        }
-        
-    }
+        param_led step;
 
+        for(uint8_t i = 0; i < 4; i++)  
+        {
+        step.led_num = i;
+        step.on_ms = DELAY_MS;
+        step.off_ms = DELAY_MS;
+        blink(&step);
+        }
+    };
+
+
+void blink(const param_led *param)   
+{
+    led_on(param->led_num);
+    HAL_Delay(param->on_ms);
+    led_off(param->led_num);
+    HAL_Delay(param->off_ms);
+}

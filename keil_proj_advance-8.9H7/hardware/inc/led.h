@@ -17,7 +17,20 @@ extern "C" {
 #define LED_NUM_MAX 3U
 #define DELAY_MS 120U
 
+/*定义结构体*/
+typedef struct
+{
+    uint8_t led_num;
+    uint16_t on_ms;
+    uint16_t off_ms;
+}param_led;
 
+typedef struct
+{
+    param_led steps[4];
+}param_led_flow;
+
+void config_apply(param_led_flow config);
 
 /* 宏定义：给 LED 使用的端口和引脚起名字 */
 #define LED_GPIO_PORT GPIOB
@@ -27,9 +40,8 @@ extern "C" {
 #define LED4_PIN      GPIO_PIN_6
 
 /* 种子工程先提供无参数版本，只操作 LED1；题目 1 将其扩展为带编号参数版本 */
-void led_on(uint8_t led_num);
-void led_off(uint8_t led_num);
 void flow_led(void);
+void blink(uint8_t led_num);
 
 #ifdef __cplusplus
 }
