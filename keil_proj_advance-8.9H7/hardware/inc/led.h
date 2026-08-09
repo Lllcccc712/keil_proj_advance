@@ -12,6 +12,12 @@
 extern "C" {
 #endif
 
+/* 定义编号的最值*/
+#define LED_NUM_MIN 0U
+#define LED_NUM_MAX 3U
+
+
+
 /* 宏定义：给 LED 使用的端口和引脚起名字 */
 #define LED_GPIO_PORT GPIOB
 #define LED1_PIN      GPIO_PIN_3
@@ -20,8 +26,8 @@ extern "C" {
 #define LED4_PIN      GPIO_PIN_6
 
 /* 种子工程先提供无参数版本，只操作 LED1；题目 1 将其扩展为带编号参数版本 */
-void led_on(void);
-void led_off(void);
+void led_on(uint8_t led_num);
+void led_off(uint8_t led_num);
 
 #ifdef __cplusplus
 }
