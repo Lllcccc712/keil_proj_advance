@@ -10,7 +10,7 @@
 
 /* 创建全局变量*/
  static uint8_t led_num;
- static step;
+ static param_led step;
 
 /* 点亮 第n个 LED */
 static void led_on(uint8_t led_num)
@@ -142,7 +142,7 @@ void led_two()
     {
         step = 0;
     }
-    
+
     HAL_Delay(DELAY_MS);
 }
 
