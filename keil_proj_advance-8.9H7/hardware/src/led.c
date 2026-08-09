@@ -9,8 +9,8 @@
 
 
 /* 创建全局变量*/
- static uint8_t led_num;
- static param_led step;
+static param_led blink_param;
+static uint8_t flow_step = 0; 
 
 /* 点亮 第n个 LED */
 static void led_on(uint8_t led_num)
@@ -83,10 +83,10 @@ void flow_led(void)
     {
         for(uint8_t i = 0; i < 4; i++)  
         {
-        step.led_num = i;
-        step.on_ms = DELAY_MS;
-        step.off_ms = DELAY_MS;
-        blink(&step);
+        blink_param.led_num = i;
+        blink_param.on_ms = DELAY_MS;
+        blink_param.off_ms = DELAY_MS;
+        blink(&blink_param);
         }
     };
 
@@ -102,11 +102,11 @@ void blink(const param_led *param)
 /*mode_one*/
 void led_one()
 {
-    for(led_num = 0U; led_num < 4; led_num++)
+    for(int i = 0U; i < 4; i++)
     {
-        led_on(led_num);
+        led_on(i);
         HAL_Delay(DELAY_MS);
-        led_off(led_num);
+        led_off(i);
         HAL_Delay(DELAY_MS);
     }
 }
@@ -114,7 +114,7 @@ void led_one()
 /*mode_two*/
 void led_two()
 {
-    switch(step)
+    switch(flow_step)
     {
         case 0:
         led_on(0);
@@ -137,10 +137,10 @@ void led_two()
         break;
 
     }
-    step++;
-    if(step > 3)
+    flow_step++;
+    if(flow_step > 3)
     {
-        step = 0;
+        flow_step = 0;
     }
 
     HAL_Delay(DELAY_MS);
@@ -149,8 +149,6 @@ void led_two()
 /*mode_all*/
 void led_all()
 {
-    while(1)
-    {
         led_on(0);
         led_on(1);
         led_on(2);
@@ -160,5 +158,4 @@ void led_all()
         led_off(1);
         led_off(2);
         led_off(3);
-    }
 }

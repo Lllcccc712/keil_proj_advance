@@ -107,30 +107,44 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
+    if(signal == 0)
+    {
+      current_mode = mode_one;
+    }
+    else if(signal == 1)
+    {
+      current_mode = mode_two;
+    }
+    else if(signal == 2)
+    {
+      current_mode = mode_all;
+    }
     switch(current_mode)
     {
-      case 0:
+      case mode_one:
       led_one();
       break;
 
-      case 1:
+      case mode_two:
       led_two();
       break;
 
-      case 2:
+      case mode_all:
       led_all();
       break;
 
       default :
       break;
     }
+  }
+    /* USER CODE END WHILE */
+    
     /* USER CODE BEGIN 3 */
     // led_on(0U);
     // HAL_Delay(250U);
     // led_off(0U);
     // HAL_Delay(250U);
-  }
+
   /* USER CODE END 3 */
 }
 
