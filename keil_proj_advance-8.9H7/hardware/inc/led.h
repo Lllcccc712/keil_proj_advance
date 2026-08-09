@@ -41,7 +41,7 @@ void config_apply(param_led_flow config);
 
 /* 种子工程先提供无参数版本，只操作 LED1；题目 1 将其扩展为带编号参数版本 */
 void flow_led(void);
-void blink(uint8_t led_num);
+void blink(const param_led *param);
 
 #ifdef __cplusplus
 }
