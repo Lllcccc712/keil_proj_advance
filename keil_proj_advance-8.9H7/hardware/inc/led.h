@@ -30,7 +30,14 @@ typedef struct
     param_led steps[4];
 }param_led_flow;
 
-void config_apply(param_led_flow config);
+/* 枚举*/
+typedef enum
+{
+    mode_one = 0,
+    mode_two = 1,
+    mode_all = 2,
+}mode;
+
 
 /* 宏定义：给 LED 使用的端口和引脚起名字 */
 #define LED_GPIO_PORT GPIOB
@@ -43,8 +50,20 @@ void config_apply(param_led_flow config);
 void flow_led(void);
 void blink(const param_led *param);
 
+/*逐个亮灭函数*/
+void led_one();
+
+/*两两亮灭*/
+void led_two();
+
+/*全部亮灭*/
+void led_all();
+
 #ifdef __cplusplus
 }
 #endif
 
 #endif /* LED_H */
+
+
+

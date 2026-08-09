@@ -68,7 +68,8 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
+  mode current_mode = mode_one; 
+  int signal = 0;
   /* USER CODE END 1 */
 
   /* MPU Configuration--------------------------------------------------------*/
@@ -107,8 +108,23 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    flow_led();
+    switch(current_mode)
+    {
+      case 0:
+      led_one();
+      break;
 
+      case 1:
+      led_two();
+      break;
+
+      case 2:
+      led_all();
+      break;
+
+      default :
+      break;
+    }
     /* USER CODE BEGIN 3 */
     // led_on(0U);
     // HAL_Delay(250U);
